@@ -1,5 +1,5 @@
 import re
-import mathplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
 data_file = 'dna_decoder/dna_raw.txt' #path for data file
 
