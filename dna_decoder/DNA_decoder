@@ -1,0 +1,28 @@
+import re
+
+data_file = 'dna_decoder/dna_raw.txt'
+
+with open(f"{data_file}", "r") as dna_file:
+
+    for line in dna_file.readlines():
+        if line[0] == ">":
+            seq_id = line[1:]
+            seq_dict = {
+            "a": 0,
+            "t": 0,
+            "c": 0,
+            "g": 0
+            }
+        else:
+            line = line.strip("\n")
+            line = line.strip(" ") #Probably unnessesary here
+            for char in line: 
+                if char.lower() in seq_dict.keys():
+                    seq_dict[char.lower()] += 1
+            print(seq_id)
+            print(seq_dict)
+            print(" ")
+            
+
+
+   
