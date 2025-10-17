@@ -1,10 +1,12 @@
 import re
 import matplotlib.pyplot as plt
+import numpy as np
+import math
 
 data_file = 'dna_decoder/dna_raw.txt' #path for data file
+sequences = []
 
 with open(f"{data_file}", "r") as dna_file:
-
     for line in dna_file.readlines():
         if line[0] == ">":
             seq_id = line[1:]
@@ -23,9 +25,15 @@ with open(f"{data_file}", "r") as dna_file:
             print(seq_id)
             print(seq_dict)
             print(" ")
+            sequences.append(seq_dict)
 
-            plt.bar(seq_dict.keys(), seq_dict.values())
-            plt.show()
+fig = plt.figure()
+i = 0
+n = math.floor(math.sqrt(len(sequences))) #calculate number of rows of subplots i figure
+for seq in sequences:
+    ax = fig.add_subplot(int(n), int(len(sequences)/n), i + 1 )
+    ax.set(title=f'seq{i+1}')
+    ax = plt.bar(seq.keys(), seq.values())
+    i += 1
+plt.show()
 
-
-   
